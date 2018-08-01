@@ -4,8 +4,8 @@
 
 // See https://github.com/danielaparker/jsoncons for latest version
 
-#ifndef JSONCONS_CBOR_CBORPARSER_HPP
-#define JSONCONS_CBOR_CBORPARSER_HPP
+#ifndef JSONCONS_CBOR_CBOR_PARSER_HPP
+#define JSONCONS_CBOR_CBOR_PARSER_HPP
 
 #include <string>
 #include <sstream>
@@ -192,6 +192,8 @@ inline
 std::vector<uint8_t> get_byte_string(const uint8_t* first, const uint8_t* last, 
                                      const uint8_t** endp)
 {
+    JSONCONS_ASSERT(get_major_type(*first) == cbor_major_type::byte_string);
+
     std::vector<uint8_t> v;
     if (JSONCONS_UNLIKELY(last <= first))
     {
